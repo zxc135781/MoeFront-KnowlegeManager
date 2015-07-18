@@ -68,7 +68,7 @@ class Database
      */
     public function AddNote($title, $content, $date, $status, $sort, $tags)
     {
-        return $this->db->query("INSERT INTO `ria_content` (`cid`, `title`, `content`, `date`, `status`, `sort`, `tags`) VALUES ('{$title}','{$content}','{$date}','{$status}','{$sort}','{$tags}')");
+        return $this->db->query("INSERT INTO `ria_content` ( `title`, `content`, `date`, `status`, `sort`, `tags`) VALUES ('{$title}','{$content}','{$date}','{$status}','{$sort}','{$tags}')");
     }
 
     /**
@@ -79,5 +79,20 @@ class Database
     public function DelNote($cid)
     {
         return $this->db->query("DELETE FROM `ria_content` WHERE  `cid`={$cid}");
+    }
+
+    /** 更新文章
+     * @param $cid
+     * @param $title
+     * @param $content
+     * @param $date
+     * @param $status
+     * @param $sort
+     * @param $tags
+     * @return bool|mysqli_result
+     */
+    public function UpdateNote($cid, $title, $content, $date, $status, $sort, $tags)
+    {
+        return $this->db->query("UPDATE `ria_content` SET `title`=$title, `content`=$content, `date`=$date, `status`=$status, `sort`=$sort, `tags`=$tags WHERE `cid`=$cid");
     }
 }
