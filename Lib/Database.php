@@ -17,6 +17,18 @@ class Database
     }
 
     /**
+     * 设置返回格式
+     * MYSQLI_ASSOC
+     * MYSQLI_NUM
+     * MYSQLI_BOTH
+     * @param $type
+     */
+    public function setRtnType ($type)
+    {
+        $this->retType = $type;
+    }
+
+    /**
      * 获取程序 ria_option 表的选项
      * @param $name
      * @param $inputMethod
