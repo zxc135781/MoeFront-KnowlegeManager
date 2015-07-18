@@ -7,6 +7,9 @@
 define('APP_ROOT',dirname(__file__));
 require 'config.php';
 
+/** 数据库基类文件 必须先于Global引入 */
+require 'Lib/Database.php';
+
 /** 全局基类文件 require */
 require 'Lib/Global.php';
 
