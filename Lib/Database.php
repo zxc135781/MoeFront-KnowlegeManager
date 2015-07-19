@@ -93,7 +93,8 @@ class Database
         return $this->db->query("DELETE FROM `ria_content` WHERE  `cid`={$cid}");
     }
 
-    /** 更新文章
+    /** 
+    * 更新文章
      * @param $cid
      * @param $title
      * @param $content
@@ -107,4 +108,34 @@ class Database
     {
         return $this->db->query("UPDATE `ria_content` SET `title`=$title, `content`=$content, `date`=$date, `status`=$status, `sort`=$sort, `tags`=$tags WHERE `cid`=$cid");
     }
+
+    /**
+    * 首页：获取分类菜单
+    * @return 
+    */
+    public function getSorts(){
+        $query = $this->db->query("SELECT DISTINCT `sort` FROM ria_content");       //使用 DISTINCT 筛选非重复值
+        while($result = mysqli_fetch_array($query,$this->retType)){
+            echo '<li><a href="index.php?sort='.urlencode($result['sort']).'">'.$result['sort'].'</a></li>';
+        }
+    }
+
+    /**
+    * 首页：获取最近笔记
+    * @param $limit = 6
+    * @param $containerStart
+    * @param @containerOver
+    * @return mysqli_query
+    */
+    public function getRecentNotes($limit = 6,$containerStart,$containerOver){
+        $query = $this->db->query("SELECT * FROM ria_content ORDER BY cid DESC LIMIT {$limit}") or die(mysqli_error($this->db));
+        while($note = mysqli_fetch_array($query,$this->retType)){
+            echo $containerStart;
+            echo '<h3 class="note-title"><a class="note-title" href="index.php?p='.$note['cid'].'">'.$note['title'].'</A></h3>';
+            $content = Markdown::convert($note['content']);
+            echo '<div class="note-content">'.substr($content,0,200).'</div>';
+            echo $containerOver;
+        }
+    }
+
 }

@@ -62,7 +62,7 @@ CREATE TABLE IF NOT EXISTS `ria_option` (
 --
 
 INSERT INTO `ria_option` (`id`, `name`, `value`) VALUES
-(2, 'title', '知识笔记管理RIA - MoeFront');
+(2, 'title', 'MoeKnowlege - 知识笔记管理系统');
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;

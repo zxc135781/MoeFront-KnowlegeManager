@@ -25,6 +25,10 @@ class RIA_Global extends Database
     {
         if ($this->isPost('act', 'get'))
             $act = $_GET['act'];
+        elseif ($this->isPost('sort','get')){
+            $sid = $_GET['sort'];
+            $act = 'sort';
+        }
         else
             $act = 'index';
         switch ($act) {
