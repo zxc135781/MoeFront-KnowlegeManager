@@ -29,6 +29,10 @@ class RIA_Global extends Database
             $sid = $_GET['sort'];
             $act = 'sort';
         }
+        elseif($this->isPost('p','get')){
+            $cid = $_GET['p'];
+            $act = 'post';
+        }
         else
             $act = 'index';
         switch ($act) {
@@ -39,6 +43,13 @@ class RIA_Global extends Database
 
             case 'edit':
                 require APP_ROOT . '/Template/editor.php';
+                break;
+
+            case 'sort':
+                require APP_ROOT.'/Template/archive.php';
+
+            case 'post':
+                require APP_ROOT.'/Template/post.php';
 
         }
     }
@@ -63,7 +74,7 @@ class RIA_Global extends Database
                 return false;
         } else
             return false;        //若不是GET也不是POST，直接返回False
-
+        $this->Ending();
     }
 
     /**
@@ -73,6 +84,27 @@ class RIA_Global extends Database
     public function Redirect($redirectURL)
     {
         echo '<script>window.localtion.href="' . $redirectURL . '"</script>';
+    }
+
+    /**
+    * 程序结尾
+    */
+    public function Ending(){
+        require 'Template/over.php';
+    }
+
+    /**
+    * 包含文件
+    * @param $file
+    * @param $type
+    */
+    public function need($file,$type=1){
+        if($type == 1)
+            require $file;
+        elseif($type == 2)
+            include $file;
+        else
+            return false;
     }
 
 }

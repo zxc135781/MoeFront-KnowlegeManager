@@ -61,7 +61,7 @@ class Database
      * @param $returnContent
      * @return
      */
-    public function GetNoteInfo($noteId, $returnContent)
+    public function getNoteInfo($noteId, $returnContent)
     {
         $res = $this->db->query("SELECT * FROM ria_content WHERE cid = '{$noteId}'");
         $rtn = $res->fetch_assoc();
@@ -122,20 +122,77 @@ class Database
 
     /**
     * 首页：获取最近笔记
-    * @param $limit = 6
     * @param $containerStart
     * @param @containerOver
     * @return mysqli_query
     */
-    public function getRecentNotes($limit = 6,$containerStart,$containerOver){
-        $query = $this->db->query("SELECT * FROM ria_content ORDER BY cid DESC LIMIT {$limit}") or die(mysqli_error($this->db));
+    public function getRecentNotes($containerStart,$containerOver){
+        $query = $this->db->query("SELECT * FROM ria_content ORDER BY cid DESC") or die(mysqli_error($this->db));
         while($note = mysqli_fetch_array($query,$this->retType)){
             echo $containerStart;
             echo '<h3 class="note-title"><a class="note-title" href="index.php?p='.$note['cid'].'">'.$note['title'].'</A></h3>';
             $content = Markdown::convert($note['content']);
-            echo '<div class="note-content">'.substr($content,0,200).'</div>';
+            echo '<div class="note-content">'.$content.'</div>';
+            echo '<div class="note-tags" style="background-color:'.$this->randColor().';">
+            日期：'.$note['date'].' // 
+            分类：'.$note['sort'].' // 
+            标签：'.$note['tags'].' 
+            <a href="index.php?p='.$note['cid'].'" class="read-this">阅读...</a></div>';
             echo $containerOver;
+            echo '<br>';
         }
     }
 
+    /**
+    * 分类：获取分类下的笔记
+    * @param $sid
+    * @param $containerStart
+    * @param $containerOver
+    */
+    public function getSortNotes($sid,$containerStart,$containerOver){
+        $query = $this->db->query("SELECT * FROM ria_content WHERE sort='{$sid}' ORDER BY cid DESC") or die(mysqli_error($this->db));
+        while($note = mysqli_fetch_array($query,$this->retType)){
+            echo $containerStart;
+            echo '<h3 class="note-title"><a class="note-title" href="index.php?p='.$note['cid'].'">'.$note['title'].'</A></h3>';
+            $content = Markdown::convert($note['content']);
+            echo '<div class="note-content">'.$content.'</div>';
+            echo '<div class="note-tags" style="background-color:'.$this->randColor().';">
+            日期：'.$note['date'].' // 
+            分类：'.$note['sort'].' // 
+            标签：'.$note['tags'].' 
+            <a href="index.php'.$note['cid'].'" class="read-this">阅读...</a></div>';
+            echo $containerOver;
+            echo '<br>';
+        }
+    }
+
+    /**
+    * 拾取随机颜色
+    * @return string
+    */
+    public function randColor(){
+        $colors = array();
+        for($i = 0;$i<6;$i++){
+            $colors[] = dechex(rand(0,15));
+        }
+        return '#'.implode('',$colors);
+    }
+
+    /**
+    * 计算分类条数
+    * @param sortName
+    * @return mysqli_fetch_array_result
+    */
+    public function count($sortName = 'content'){
+        if($sortName == 'content'){
+            $query = $this->db->query("SELECT count(*) AS total FROM ria_content");
+            $res = mysqli_fetch_array($query,$this->retType);
+            return $res['total'];
+        }
+        else{
+            $query = $this->db->query("SELECT count(*) AS total FROM ria_content WHERE sort='{$sortName}'");
+            $res = mysqli_fetch_array($query,$this->retType);
+            return $res['total'];            
+        }
+    }
 }
