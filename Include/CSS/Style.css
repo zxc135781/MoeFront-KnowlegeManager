@@ -16,7 +16,7 @@ blockquote{
 	margin:0;
 }
 #header{
-	background:#245609;
+	background:#00bbd1;
 	min-height: 245px;
 }
 #navbar{
@@ -110,6 +110,36 @@ blockquote{
 .copyright a{
 	color:#888888;
 	text-decoration: none;
+}
+.navi-sort{
+	display: none;
+}
+.pagenavigator{
+	text-align: center;
+	list-style: none;
+}
+.pagenavigator li{
+	display: inline;
+	background-color: #fff;
+	padding: 10px;
+	border-right: 1px solid #eee;
+}
+.pagenavigator li a{
+	color:#039be5;
+	text-decoration: none;
+	font-size:22px;
+}
+.input-area{
+	width: 100%;
+	margin-top:10px;
+	font-size: 24px;
+	border: 0px;
+	background-color: #eee;
+	border-bottom: 2px solid #888888;
+}
+.input-area:focus{
+	border: 0px;
+	border-bottom: 2px solid #00bbd1;
 }
 /*
 #bottom{

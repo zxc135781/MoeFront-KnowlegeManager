@@ -7,14 +7,18 @@
  * @link https://moefront.github.io
  */
 include 'header.php';
-
+if(isset($_GET['page']) && $_GET['page']> 0)
+  $p = ($_GET['page']-1)*3;
+else
+   $p = 0;
 ?>
 <div class="mf-banner">
 	<div class="container">
 		<div class="panel">
 			<h2 class="panel-title">我的笔记本：共有 <?php echo $this->count();?> 篇笔记</h2>
 			<br>
-			<?php $this->getRecentNotes('<div class="note-container">',"</div>");?>
+			<?php $this->getRecentNotes('<div class="note-container">',"</div>",$p);?>
+			<?php $this->pageNav(); ?>
 			<?php $this->need('Template/footer.php');?>
 		</div>
 	</div>

@@ -20,7 +20,10 @@
 		<li><a href="index.php?act=edit"><spon class=" icon-plus-sign"></spon></a></li>
 		<li><a href="index.php"><span class="icon-home"></span> MoeKnowlege</a></li>
 		<ul class="float-right">
-			<?php $this->getSorts();?>
+			<div class="navi-sort">
+				<?php $this->getSorts();?>
+			</div>
+			<li><a href="#" id="showSorts"><span class="icon-tags"></span> 显示分类</a></li>
 		</ul>
 	</div>
 </section>

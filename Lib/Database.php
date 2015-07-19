@@ -123,11 +123,13 @@ class Database
     /**
     * 首页：获取最近笔记
     * @param $containerStart
-    * @param @containerOver
+    * @param $containerOver
+    * @param $limit
     * @return mysqli_query
     */
-    public function getRecentNotes($containerStart,$containerOver){
-        $query = $this->db->query("SELECT * FROM ria_content ORDER BY cid DESC") or die(mysqli_error($this->db));
+    public function getRecentNotes($containerStart,$containerOver,$limit){
+        $WA = new RIA_Global();
+        $query = $this->db->query("SELECT * FROM ria_content ORDER BY cid DESC LIMIT {$limit},3") or die(mysqli_error($this->db));
         while($note = mysqli_fetch_array($query,$this->retType)){
             echo $containerStart;
             echo '<h3 class="note-title"><a class="note-title" href="index.php?p='.$note['cid'].'">'.$note['title'].'</A></h3>';
@@ -194,5 +196,16 @@ class Database
             $res = mysqli_fetch_array($query,$this->retType);
             return $res['total'];            
         }
+    }
+
+    /**
+    * 首页：笔记分页
+    */
+    public function pageNav(){
+        $number = ceil($this->count() / 3);
+        echo '<ul class="pagenavigator">';
+        for($i=1;$i<=$number;$i++)
+            echo '<li><a href="index.php?page='.$i.'">'.$i.'</a></li>';
+        echo '</ul>';
     }
 }

@@ -33,6 +33,10 @@ class RIA_Global extends Database
             $cid = $_GET['p'];
             $act = 'post';
         }
+        elseif($this->isPost('page','get')){
+            $page = $_GET['page'];
+            $act = 'index';
+        }
         else
             $act = 'index';
         switch ($act) {
