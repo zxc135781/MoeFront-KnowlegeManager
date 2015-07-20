@@ -26,9 +26,11 @@ if(!isset($cid)){
 					日期：<?php echo $this->getNoteInfo($cid,'date'); ?> // 
 					分类：<?php echo $this->getNoteInfo($cid,'sort'); ?>  //
 					标签：<?php echo $this->getNoteInfo($cid,'tags'); ?>
-					<a href="index.php?act=edit&cid=<?php echo $cid; ?>" class="read-this">编辑笔记内容</a>
+					<a href="index.php?act=edit&cid=<?php echo $cid; ?>" class="read-this">编辑笔记内容 </a>
+					<a href="index.php?act=del&cid=<?php echo $cid; ?>" class="read-this"> 删除这篇笔记 </a>
 				</div>
 			</div>
+			<br>
 			<!--引入Disqus评论，因为没有时间只能暂时使用第三方评论-->
 			<div class="note-container">
 				<div id="disqus_thread" style="margin:20px;"></div>

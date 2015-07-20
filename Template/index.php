@@ -15,7 +15,13 @@ else
 <div class="mf-banner">
 	<div class="container">
 		<div class="panel">
-			<h2 class="panel-title">我的笔记本：共有 <?php echo $this->count();?> 篇笔记</h2>
+			<h2 class="panel-title">
+			<?php if(!isset($_GET['page'])): ?>
+				我的笔记本：共有 <?php echo $this->count();?> 篇笔记
+			<?php else: ?>
+				您正在查看分页 <?php echo $_GET['page']; ?> 的文章
+			<?php endif;?>
+			</h2>
 			<br>
 			<?php $this->getRecentNotes('<div class="note-container">',"</div>",$p);?>
 			<?php $this->pageNav(); ?>

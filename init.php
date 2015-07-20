@@ -7,6 +7,8 @@
 define('APP_ROOT',dirname(__file__));
 require 'config.php';
 
+header("Content-type:text/html;charset=UTF-8");
+
 /** 数据库基类文件 必须先于Global引入 */
 require 'Lib/Database.php';
 

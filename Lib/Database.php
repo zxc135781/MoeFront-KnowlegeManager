@@ -78,8 +78,14 @@ class Database
      * @param $tags
      * @return bool|mysqli_result
      */
-    public function AddNote($title, $content, $date, $status, $sort, $tags)
+    public function addNote($title, $content, $date, $status, $sort, $tags)
     {
+         $title = mysqli_real_escape_string($this->db,$title);
+         $content = mysqli_real_escape_string($this->db,$content);
+         $date = mysqli_real_escape_string($this->db, $date);
+         $status = 1;
+         $sort =mysqli_real_escape_string($this->db,$sort);
+         $tags = mysqli_real_escape_string($this->db, $tags);
         return $this->db->query("INSERT INTO `ria_content` ( `title`, `content`, `date`, `status`, `sort`, `tags`) VALUES ('{$title}','{$content}','{$date}','{$status}','{$sort}','{$tags}')");
     }
 
@@ -88,7 +94,7 @@ class Database
      * @param $cid
      * @return bool|mysqli_result
      */
-    public function DelNote($cid)
+    public function delNote($cid)
     {
         return $this->db->query("DELETE FROM `ria_content` WHERE  `cid`={$cid}");
     }
@@ -104,9 +110,15 @@ class Database
      * @param $tags
      * @return bool|mysqli_result
      */
-    public function UpdateNote($cid, $title, $content, $date, $status, $sort, $tags)
+    public function updateNote($cid, $title, $content, $date, $status, $sort, $tags)
     {
-        return $this->db->query("UPDATE `ria_content` SET `title`=$title, `content`=$content, `date`=$date, `status`=$status, `sort`=$sort, `tags`=$tags WHERE `cid`=$cid");
+            $title = mysqli_real_escape_string($this->db,$title);
+            $content = mysqli_real_escape_string($this->db,$content);
+            $date = mysqli_real_escape_string($this->db, $date);
+            $status = 1;
+            $sort =mysqli_real_escape_string($this->db,$sort);
+            $tags = mysqli_real_escape_string($this->db, $tags);
+            return $this->db->query("UPDATE `ria_content` SET `title`='{$title}', `content`= '{$content}' , `date`= '{$date}', `status`= '{$status}', `sort`= '{$sort}', `tags`= '{$tags}' WHERE `cid`= '{$cid}'") or die(mysqli_error($this->db));
     }
 
     /**

@@ -51,9 +51,21 @@ class RIA_Global extends Database
 
             case 'sort':
                 require APP_ROOT.'/Template/archive.php';
+                break;
 
             case 'post':
                 require APP_ROOT.'/Template/post.php';
+                break;
+
+            case 'del':
+                if($this->isPost('cid','get')){
+                    $cid = $_GET['cid'];
+                    echo "<script>if(confirm('真的要删除笔记 《".$this->getNoteInfo($cid,'title')."》 吗？')){window.location.href='Include/delete.php?cid=".$cid."'}else{window.location.href='index.php'}</script>" ;
+                }
+                else{
+                    $this->Redirect('index.php');
+                }
+                break;
 
         }
     }
@@ -87,7 +99,7 @@ class RIA_Global extends Database
      */
     public function Redirect($redirectURL)
     {
-        echo '<script>window.localtion.href="' . $redirectURL . '"</script>';
+        echo '<script>window.location.href="' . $redirectURL . '"</script>';
     }
 
     /**
@@ -109,6 +121,14 @@ class RIA_Global extends Database
             include $file;
         else
             return false;
+    }
+
+    /**
+    * 程序弹窗提示
+    * @param $noticeContent
+    */
+    public function alert($noticeContent){
+        echo '<script>alert("'.$noticeContent.'");</script>';
     }
 
 }
