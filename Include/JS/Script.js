@@ -1,1 +1,0 @@
-$(function(){$("#showSorts").click(function(){$("#showSorts").css({"display":"none"});$(".navi-sort").fadeIn(800)})});

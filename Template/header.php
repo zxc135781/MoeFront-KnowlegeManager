@@ -15,15 +15,14 @@
     <script type="text/javascript" src="Include/JS/Script.js"></script>
 </head>
 <body>
-<section id="header">
-	<div id="navbar">
-		<li><a href="index.php?act=edit"><spon class=" icon-plus-sign"></spon></a></li>
-		<li><a href="index.php"><span class="icon-home"></span> MoeKnowlege</a></li>
-		<ul class="float-right">
-			<div class="navi-sort">
-				<?php $this->getSorts();?>
-			</div>
-			<li><a href="#" id="showSorts"><span class="icon-tags"></span> 显示分类</a></li>
-		</ul>
-	</div>
+    <section id="header">
+       <div id="navbar">
+          <div class="navi-sort sort-area">
+              <?php $this->getSorts();?>
+          </div>
+          <div class="navi-body">
+            <li><a href="index.php?act=edit"><spon class=" icon-plus-sign"></spon></a></li>
+            <li><a href="index.php"><span class="icon-home"></span> MoeKnowlege</a></li>
+        </div>
+    </div>
 </section>

@@ -144,7 +144,8 @@ class Database
         $query = $this->db->query("SELECT * FROM ria_content ORDER BY cid DESC LIMIT {$limit},3") or die(mysqli_error($this->db));
         while($note = mysqli_fetch_array($query,$this->retType)){
             echo $containerStart;
-            echo '<h3 class="note-title"><a class="note-title" href="index.php?p='.$note['cid'].'">'.$note['title'].'</A></h3>';
+            echo '<h3 class="note-title"><a class="note-title" href="index.php?p='.$note['cid'].'">'.$note['title'].'</a>
+            <a class="del-button" href="index.php?act=del&cid='.$note['cid'].'"><span class="icon-remove"></span></a></h3>';
             $content = Markdown::convert($note['content']);
             echo '<div class="note-content">'.$content.'</div>';
             echo '<div class="note-tags" style="background-color:'.$this->randColor().';">

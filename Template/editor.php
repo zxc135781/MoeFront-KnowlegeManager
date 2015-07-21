@@ -38,15 +38,15 @@ if($this->isPost('title','post') && $this->isPost('content','post')){
 <script type="text/javascript" src="Include/JS/thinker-md.vendor.js"></script>
 <link rel="stylesheet" type="text/css" href="Include/CSS/thinker-md.vendor.css"/>
 <script>
-    $("textarea[data-provide='markdown']").markdown({
-        language: 'zh',
-        fullscreen: {
-            enable: true
-        },
-        resize: 'vertical',
-        localStorage: 'md',
-        imgurl: 'Include/IMG'
-    });
+	$("textarea[data-provide='markdown']").markdown({
+		language: 'zh',
+		fullscreen: {
+			enable: true
+		},
+		resize: 'vertical',
+		localStorage: 'md',
+		imgurl: 'Include/IMG'
+	});
 </script>
 
 <div class="mf-banner">
@@ -55,22 +55,33 @@ if($this->isPost('title','post') && $this->isPost('content','post')){
 			<h2 class="panel-title">MoeKnowlege Editor</h2>
 			<br>
 			<form method="post" action="#" style="font-size:22px;">
-				<span>标题</span> 
-				<input type="text" class="input-area" name="title" <?php if($s) echo 'value="'.$this->getNoteInfo($cid,'title').'"'; ?>/>
-				<br><br>
-				<span>内容</span>
-				<textarea name="content" class="editor-textarea" id="wmd-input" name="content" data-provide="markdown" rows="10" placeholder="在这里输入笔记的内容，支持 Markdown 语法."><?php if($s) echo $this->getNoteInfo($cid,'content'); ?></textarea>
-				<br>
-				<div class="editor-panel-two">
-					<span>分类</span>
-					<input type="text" class="input-area" name="sort" <?php if($s) echo 'value="'.$this->getNoteInfo($cid,'sort').'"'; ?>/>
-				</div >
-				<div class="editor-panel-two">
-					<span>标签</span>
-					<input type="text" class="input-area" name="tags" placeholder="多个标签请用英文逗号 ',' 隔开" <?php if($s) echo 'value="'.$this->getNoteInfo($cid,'tags').'"'; ?>/>
-				</div >
-				<br>
-				<p style="text-align:right;"><button type="submit" class="editor-submit"><span class="icon-fighter-jet"> </span> 保存</button></p>
+				<div class="note-container">
+					<h3 class="note-title">
+						<?php if(isset($_GET['cid']))
+							echo '修改《'.$this->getNoteInfo($_GET['cid'],'title').'》';
+							else
+							echo '新建笔记';
+						?>
+					</h3>
+					<div class="note-content">
+						<span>标题</span> 
+						<input type="text" class="input-area" name="title" <?php if($s) echo 'value="'.$this->getNoteInfo($cid,'title').'"'; ?>/>
+						<br><br>
+						<span>内容</span>
+						<textarea name="content" class="editor-textarea" id="wmd-input" name="content" data-provide="markdown" rows="10" placeholder="在这里输入笔记的内容，支持 Markdown 语法."><?php if($s) echo $this->getNoteInfo($cid,'content'); ?></textarea>
+						<br>
+						<div class="editor-panel-two">
+							<span>分类</span>
+							<input type="text" class="input-area" name="sort" <?php if($s) echo 'value="'.$this->getNoteInfo($cid,'sort').'"'; ?>/>
+						</div >
+						<div class="editor-panel-two">
+							<span>标签</span>
+							<input type="text" class="input-area" name="tags" placeholder="多个标签请用英文逗号 ',' 隔开" <?php if($s) echo 'value="'.$this->getNoteInfo($cid,'tags').'"'; ?>/>
+						</div >
+						<br>
+						<p style="text-align:right;"><button type="submit" class="editor-submit"><span class="icon-fighter-jet"> </span> 保存</button></p><br>
+					</div>
+				</div>
 			</form>
 		</div>
 	</div>
