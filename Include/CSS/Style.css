@@ -3,6 +3,7 @@
 /** 界面样式控制 */
 
 body{
+	font: normal 100%;
 	margin:0px;
 	font-family: Comic sans ms,  Microsoft Yahei ,sans-serif!important;
 	background-color: #fff;
@@ -187,6 +188,9 @@ pre code{
 	text-decoration: none;
 	font-size:32px;
 }
+h1 {font-size: 1.5em;}
+small {font-size: 0.875em;}
+img { max-width: 100%;}
 /*
 #bottom{
 	min-height: 600px;
