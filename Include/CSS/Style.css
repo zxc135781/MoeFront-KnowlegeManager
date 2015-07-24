@@ -29,6 +29,7 @@ pre code{
 }
 #header{
 	background:rgb(0,188,212);
+	max-width: 100%;
 }
 #navbar{
 	margin:0 auto;
@@ -188,9 +189,6 @@ pre code{
 	text-decoration: none;
 	font-size:32px;
 }
-h1 {font-size: 1.5em;}
-small {font-size: 0.875em;}
-img { max-width: 100%;}
 /*
 #bottom{
 	min-height: 600px;
