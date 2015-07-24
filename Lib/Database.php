@@ -130,6 +130,7 @@ class Database
         while($result = mysqli_fetch_array($query,$this->retType)){
             echo '<li><a href="index.php?sort='.urlencode($result['sort']).'">'.$result['sort'].'</a></li>';
         }
+        echo '<li style="float:right;"><a href="#" class="title-only" id="title-only"><span class="icon-off"></span> 仅显示标题</a></li>';
     }
 
     /**
