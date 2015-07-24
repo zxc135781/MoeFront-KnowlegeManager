@@ -10,9 +10,9 @@ class Database
     private $db;
     protected $retType = MYSQLI_ASSOC;
 
-    public function __construct($dbhost, $dbuser, $dbpass, $dbname)
+    public function __construct($dbhost, $dbuser, $dbpass, $dbname , $dbport)
     {
-        $this->db = new mysqli($dbhost, $dbuser, $dbpass, $dbname);
+        $this->db = new mysqli($dbhost, $dbuser, $dbpass, $dbname, $dbport);
         $this->db->set_charset("UTF8");
     }
 

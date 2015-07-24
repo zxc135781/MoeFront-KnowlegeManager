@@ -10,10 +10,11 @@ class RIA_Global extends Database
     var $dbuser = DBUSER;
     var $dbpass = DBPASS;
     var $dbname = DBNAME;
+    var $dbport = DBPORT;
 
     public function __construct()
     {
-        parent::__construct($this->dbhost, $this->dbuser, $this->dbpass, $this->dbname);
+        parent::__construct($this->dbhost, $this->dbuser, $this->dbpass, $this->dbname , $this->dbport);
     }
 
     /*------------------------程序运行相关------------------------*/

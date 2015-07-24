@@ -8,7 +8,8 @@
 
 if(!defined('APP_ROOT')) exit;
 
-define('DBHOST','localhost:3306');
-define('DBUSER','root');
-define('DBPASS','root');
-define('DBNAME','webapp');
+define('DBHOST','localhost');		//数据库主机，默认是localhost
+define('DBUSER','root');			//数据库用户名，默认是root
+define('DBPASS','root');			//数据库密码，一般为root或空
+define('DBNAME','ria');			//数据库名称
+define('DBPORT','3306');			//数据库端口，默认3306
