@@ -25,6 +25,7 @@
           <div class="navi-body">
             <li><a href="index.php?act=edit"><spon class=" icon-plus-sign"></spon></a></li>
             <li><a href="index.php"><span class="icon-home"></span> MoeKnowlege</a></li>
+            <li style="float:right;"><a href="#" class="title-only" id="title-only"><span class="icon-off"></span> 仅显示标题</a></li>
         </div>
     </div>
 </section>

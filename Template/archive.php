@@ -15,7 +15,9 @@ if(!isset($sid)){
 <div class="mf-banner">
 	<div class="container">
 		<div class="panel">
-			<h2 class="panel-title">正在阅读分类 <?php echo $sid; ?> 下的笔记 (<?php echo $this->count($sid);?>)</h2>
+			<h2 class="panel-title">
+			正在阅读分类 <?php echo $sid; ?> 下的笔记 (<?php echo $this->count($sid);?>)
+			</h2>
 			<br>
 			<?php $this->getSortNotes($sid,'<div class="note-container">',"</div>");?>
 			<?php $this->need('Template/footer.php');?>
