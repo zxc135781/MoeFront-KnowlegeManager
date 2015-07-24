@@ -23,8 +23,8 @@
               <?php $this->getSorts();?>
           </div>
           <div class="navi-body">
-            <li><a href="index.php?act=edit"><spon class=" icon-plus-sign"></spon></a></li>
-            <li><a href="index.php"><span class="icon-home"></span> MoeKnowlege</a></li>
+            <li><a href="index.php?act=edit"><spon class=" icon-plus-sign"></spon> 新的笔记</a></li>
+            <li><a href="index.php"><span class="icon-book"></span> 笔记本</a></li>
         </div>
     </div>
 </section>
