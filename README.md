@@ -2,6 +2,8 @@
 2015 Baidu-IFE RIA-qihang MoeFront组 Task1
 
 ---
+## 项目地址：https://github.com/moefront/MoeFront-KnowlegeManager/
+## 在线DEMO：http://demo.imim.pw/
 
 ### 简介
 
