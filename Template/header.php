@@ -4,6 +4,8 @@
     <meta charset="UTF-8">
     <!--响应式缩放-->
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <meta name="viewport" content="user-scalable=no, width=device-width">
     <!--链接样式表-->
     <link rel="stylesheet" type="text/css" href="Include/CSS/Style.css">
     <!--Font Awesome 图标库-->
