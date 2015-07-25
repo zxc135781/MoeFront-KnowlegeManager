@@ -80,12 +80,17 @@ class Database
      */
     public function addNote($title, $content, $date, $status, $sort, $tags)
     {
-         $title = mysqli_real_escape_string($this->db,$title);
-         $content = mysqli_real_escape_string($this->db,$content);
-         $date = mysqli_real_escape_string($this->db, $date);
-         $status = 1;
-         $sort =mysqli_real_escape_string($this->db,$sort);
-         $tags = mysqli_real_escape_string($this->db, $tags);
+		if (defined('IP')){
+			include 'Secure.php';
+			$this->InsertIP(GetIP(),"ADD");
+		}
+		
+        $title = mysqli_real_escape_string($this->db,$title);
+        $content = mysqli_real_escape_string($this->db,$content);
+        $date = mysqli_real_escape_string($this->db, $date);
+        $status = 1;
+        $sort =mysqli_real_escape_string($this->db,$sort);
+        $tags = mysqli_real_escape_string($this->db, $tags);
         return $this->db->query("INSERT INTO `ria_content` ( `title`, `content`, `date`, `status`, `sort`, `tags`) VALUES ('{$title}','{$content}','{$date}','{$status}','{$sort}','{$tags}')");
     }
 
@@ -96,6 +101,10 @@ class Database
      */
     public function delNote($cid)
     {
+		if (defined('IP')){
+			include 'Secure.php';
+			$this->InsertIP(GetIP(),"DEL");
+		}
         return $this->db->query("DELETE FROM `ria_content` WHERE  `cid`={$cid}");
     }
 
@@ -112,13 +121,18 @@ class Database
      */
     public function updateNote($cid, $title, $content, $date, $status, $sort, $tags)
     {
-            $title = mysqli_real_escape_string($this->db,$title);
-            $content = mysqli_real_escape_string($this->db,$content);
-            $date = mysqli_real_escape_string($this->db, $date);
-            $status = 1;
-            $sort =mysqli_real_escape_string($this->db,$sort);
-            $tags = mysqli_real_escape_string($this->db, $tags);
-            return $this->db->query("UPDATE `ria_content` SET `title`='{$title}', `content`= '{$content}' , `date`= '{$date}', `status`= '{$status}', `sort`= '{$sort}', `tags`= '{$tags}' WHERE `cid`= '{$cid}'") or die(mysqli_error($this->db));
+		if (defined('IP')){
+			include 'Secure.php';
+			$this->InsertIP(GetIP(),"UPDATE");
+		}
+		
+		$title = mysqli_real_escape_string($this->db,$title);
+		$content = mysqli_real_escape_string($this->db,$content);
+		$date = mysqli_real_escape_string($this->db, $date);
+		$status = 1;
+		$sort =mysqli_real_escape_string($this->db,$sort);
+		$tags = mysqli_real_escape_string($this->db, $tags);
+		return $this->db->query("UPDATE `ria_content` SET `title`='{$title}', `content`= '{$content}' , `date`= '{$date}', `status`= '{$status}', `sort`= '{$sort}', `tags`= '{$tags}' WHERE `cid`= '{$cid}'") or die(mysqli_error($this->db));
     }
 
     /**
@@ -141,7 +155,8 @@ class Database
     * @return mysqli_query
     */
     public function getRecentNotes($containerStart,$containerOver,$limit){
-        $WA = new RIA_Global();
+        //$WA = new RIA_Global();
+		// May cause error
         $query = $this->db->query("SELECT * FROM ria_content ORDER BY cid DESC LIMIT {$limit},3") or die(mysqli_error($this->db));
         while($note = mysqli_fetch_array($query,$this->retType)){
             echo $containerStart;
@@ -166,7 +181,8 @@ class Database
      * @param   $limit
      */
     public function testingGetNote($containerStart,$containerOver,$limit){
-        $WA = new RIA_Global();
+        //$WA = new RIA_Global();
+		//error
         $query = $this->db->query("SELECT * FROM ria_content ORDER BY cid DESC LIMIT {$limit},3") or die(mysqli_error($this->db));
         while($note = mysqli_fetch_array($query,$this->retType)){
             echo $containerStart;
@@ -244,4 +260,10 @@ class Database
             echo '<li><a href="index.php?page='.$i.'">'.$i.'</a></li>';
         echo '</ul>';
     }
+	
+	public function InsertIP ($ip, $opt){
+		$date = @date("Y/m/d,H:i:s");
+		$this->db->query("INSERT INTO `ria_ip` ( `ip`, `date`, `opt`) VALUES ('{$ip}','{$date}','{$opt}')");
+
+	}
 }

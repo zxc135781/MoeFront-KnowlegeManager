@@ -65,6 +65,19 @@ CREATE TABLE IF NOT EXISTS `ria_option` (
 INSERT INTO `ria_option` (`id`, `name`, `value`) VALUES
 (1, 'title', 'MoeKnowlege -  RIA启航班 MoeFront 组 任务1作品');
 
+-- --------------------------------------------------------
+
+
+-- 导出  表 ria.ria_ip 结构
+CREATE TABLE IF NOT EXISTS `ria_ip` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `ip` text,
+  `date` text,
+  `opt` text,
+  PRIMARY KEY (`id`)
+) ENGINE=MyISAM DEFAULT CHARSET=utf8;
+
+
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
