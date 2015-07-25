@@ -272,6 +272,18 @@ pre code{
 	text-decoration: none;
 	margin:0 8px;
 }
+@media screen and (max-width: 992px){
+	.right{
+		display: none;
+	}
+	.left{
+		width:100%;
+	}
+	.panel{
+		width:96%;
+		padding:0px;
+	}
+}
 /*
 #bottom{
 	min-height: 600px;
