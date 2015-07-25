@@ -176,7 +176,7 @@ class Database
             日期：'.$note['date'].' // 
             分类：'.$note['sort'].' // 
             标签：'.$note['tags'].' 
-            <a href="index.php'.$note['cid'].'" class="read-this">阅读...</a></div>';
+            <a href="index.php?p='.$note['cid'].'" class="read-this">阅读...</a></div>';
             echo $containerOver;
             echo '<br>';
         }
