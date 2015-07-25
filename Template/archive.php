@@ -1,21 +1,21 @@
 <?php
 /**
- * 知识笔记管理 RIA 模版主页
- * @package Knowlege Note Manager RIA Template Index.php
+ * 知识笔记管理 RIA 笔记分类归档页面
+ * @package Knowlege Note Manager RIA Template archive.php
  * @author MoeFront 2015
  * @version 1.0
  * @link https://moefront.github.io
  */
 include 'header.php';
-if(isset($_GET['page']) && $_GET['page']> 0)
-  $p = ($_GET['page']-1)*3;
-else
-   $p = 0;
+if(!isset($sid)){
+	$this->Redirect('index.php');
+	exit;
+}
 ?>
 <div class="mf-banner">
 <div class="left">
-	<h2 style="text-align:center;color:#888888;padding:10px;font-weight:normal;">笔记列表</h2>
-	<?php $this->testingGetNote('<div class="left-title">','</div>',$p); ?>
+	<h2 style="text-align:center;color:#888888;padding:10px;font-weight:normal;">归类在 <?php echo $sid; ?> 下的笔记(<?php echo $this->count($sid); ?>)</h2>
+	<?php $this->getSortNotes($sid,'<div class="left-title">','</div>'); ?>
 	<br><br>
 	<div style="position:absolute;bottom:0px;"><?php $this->pageNav(); ?></div>
 </div>
