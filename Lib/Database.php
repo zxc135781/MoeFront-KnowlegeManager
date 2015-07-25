@@ -126,11 +126,11 @@ class Database
     * @return 
     */
     public function getSorts(){
+        echo '<li><a href="index.php">MoeKnowlege</a></li>';
         $query = $this->db->query("SELECT DISTINCT `sort` FROM ria_content");       //使用 DISTINCT 筛选非重复值
         while($result = mysqli_fetch_array($query,$this->retType)){
             echo '<li><a href="index.php?sort='.urlencode($result['sort']).'">'.$result['sort'].'</a></li>';
         }
-        echo '<li style="float:right;"><a href="#" class="title-only" id="title-only"><span class="icon-off"></span> 仅显示标题</a></li>';
     }
 
     /**
@@ -160,6 +160,29 @@ class Database
     }
 
     /**
+     * 试验性功能：获取最近笔记
+     * @param   $containerStart
+     * @param   $containerOver
+     * @param   $limit
+     */
+    public function testingGetNote($containerStart,$containerOver,$limit){
+        $WA = new RIA_Global();
+        $query = $this->db->query("SELECT * FROM ria_content ORDER BY cid DESC LIMIT {$limit},3") or die(mysqli_error($this->db));
+        while($note = mysqli_fetch_array($query,$this->retType)){
+            echo $containerStart;
+            echo '<h4 class="test-title"><a class="test-title" href="#" onclick="readNote('.$note['cid'].')">'.$note['title'].'</a>
+            </h4>';
+            $content = $note['content'];
+            echo '<div class="left-content">'.substr(strip_tags(Markdown::convert($content)),0,290)."</div>";
+            echo '<div class="note-tags" style="font-size:14px;background-color:'.$this->randColor().';">'.
+            $note['sort'].' // '.$note['date'].
+            ' <a href="index.php?act=del&cid='.$note['cid'].'" title="删除这篇笔记..." class="remove-this"><span class="icon-remove"></span> </a> '.
+            ' <a href="index.php?act=edit&cid='.$note['cid'].'" title="编辑这篇笔记..." class="remove-this"><span class="icon-pencil"></span> </a> '.'</div>';
+            echo $containerOver;
+        }
+    }
+
+    /**
     * 分类：获取分类下的笔记
     * @param $sid
     * @param $containerStart
@@ -169,16 +192,15 @@ class Database
         $query = $this->db->query("SELECT * FROM ria_content WHERE sort='{$sid}' ORDER BY cid DESC") or die(mysqli_error($this->db));
         while($note = mysqli_fetch_array($query,$this->retType)){
             echo $containerStart;
-            echo '<h3 class="note-title"><a class="note-title" href="index.php?p='.$note['cid'].'">'.$note['title'].'</A></h3>';
-            $content = Markdown::convert($note['content']);
-            echo '<div class="note-content">'.$content.'</div>';
-            echo '<div class="note-tags" style="background-color:'.$this->randColor().';">
-            日期：'.$note['date'].' // 
-            分类：'.$note['sort'].' // 
-            标签：'.$note['tags'].' 
-            <a href="index.php?p='.$note['cid'].'" class="read-this">阅读...</a></div>';
+            echo '<h4 class="test-title"><a class="test-title" href="#" onclick="readNote('.$note['cid'].')">'.$note['title'].'</a>
+            </h4>';
+            $content = $note['content'];
+            echo '<div class="left-content">'.substr(strip_tags(Markdown::convert($content)),0,290)."</div>";
+            echo '<div class="note-tags" style="font-size:14px;background-color:'.$this->randColor().';">'.
+            $note['sort'].' // '.$note['date'].
+            ' <a href="index.php?act=del&cid='.$note['cid'].'" title="删除这篇笔记..." class="remove-this"><span class="icon-remove"></span> </a> '.
+            ' <a href="index.php?act=edit&cid='.$note['cid'].'" title="编辑这篇笔记..." class="remove-this"><span class="icon-pencil"></span> </a> '.'</div>';
             echo $containerOver;
-            echo '<br>';
         }
     }
 

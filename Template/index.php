@@ -13,19 +13,18 @@ else
    $p = 0;
 ?>
 <div class="mf-banner">
-	<div class="container">
-		<div class="panel">
-			<h2 class="panel-title">
-			<?php if(!isset($_GET['page'])): ?>
-				我的笔记本：共有 <?php echo $this->count();?> 篇笔记
-			<?php else: ?>
-				您正在查看分页 <?php echo $_GET['page']; ?> 的文章
-			<?php endif;?>
-			</h2>
-			<br>
-			<?php $this->getRecentNotes('<div class="note-container">',"</div>",$p);?>
-			<?php $this->pageNav(); ?>
-			<?php $this->need('Template/footer.php');?>
-		</div>
+<div class="left">
+	<h2 style="text-align:center;color:#888888;padding:10px;font-weight:normal;">笔记列表</h2>
+	<?php $this->testingGetNote('<div class="left-title">','</div>',$p); ?>
+	<br><br>
+	<div style="position:absolute;bottom:0px;"><?php $this->pageNav(); ?></div>
+</div>
+<div class="right">
+	<h2 id="title-there" style="text-align:center;color:#888888;padding:10px;font-weight:normal;">内容</h2>
+	<div class="article-content" id="content-there">
+		<h3 style="text-align:center;font-weight:normal;">点击左边的笔记标题后，可以在这里看到内容，以及进行编辑等操作。</h3>
 	</div>
+	<div id="action-there"></div>
+	<div id="comments-there"></div>
+</div>
 </div>

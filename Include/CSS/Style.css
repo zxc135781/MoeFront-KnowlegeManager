@@ -107,7 +107,8 @@ pre code{
 }
 .note-tags{
 	color:#fff;
-	padding:15px;
+	padding: 8 8px;
+	margin-top:4px;
 }
 .read-this{
 	float: right;
@@ -209,6 +210,67 @@ pre code{
 	background-color:#4CAF50;
 	padding:4 10px;
 	color:#fff;
+}
+.left{
+	width:30%;
+	background-color:#eee;
+	height: 100%;
+	position: relative;
+	display: inline-block;
+	float: left;
+}
+.left-title{
+	background: #fff;
+	padding:10 0px;
+	height: 140px;
+	margin:10 6px;
+}
+.test-title{
+	text-align: center;
+	color:#4CAF50;
+	font-size:20px;
+	font-weight: normal;
+	text-decoration: none;
+}
+.left-content{
+	height:73px;
+	overflow: hidden;
+	padding:5 10px;
+	font-size: 14px;
+}
+.remove-this{
+	font-size:16px;
+	float:right;
+	color:#fff;
+	text-decoration: none;
+	margin:0 4px;
+}
+.right{
+	width:70%;
+	display: inline-block;
+	height:100%;
+	overflow: scroll;
+}
+.article-content{
+	padding:25px;
+	border : 1px solid #eee;
+	margin:10px;
+}
+#action-there{
+	padding:25px;
+	margin:10px;
+}
+.article-detail{
+	font-size:18px;
+	padding:10px;
+	background-color: pink;
+}
+.action-this{
+	font-size:24px;
+	float:right;
+	color:#fff;
+	text-decoration: none;
+	margin:0 8px;
 }
 /*
 #bottom{

@@ -17,6 +17,7 @@ require 'Lib/Global.php';
 
 $WA = new RIA_Global();
 
+
 /** Markdown 解析器 require */
 require 'Lib/Markdown.php';
 require 'Lib/MarkdownExtraExtended.php';
