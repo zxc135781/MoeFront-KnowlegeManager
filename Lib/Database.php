@@ -82,7 +82,7 @@ class Database
     {
 		if (defined('IP')){
 			include 'Secure.php';
-			$this->InsertIP(GetIP(),"ADD");
+			$this->InsertIP(GetIP(),"ADD"."$title");
 		}
 		
         $title = mysqli_real_escape_string($this->db,$title);
@@ -103,7 +103,7 @@ class Database
     {
 		if (defined('IP')){
 			include 'Secure.php';
-			$this->InsertIP(GetIP(),"DEL");
+			$this->InsertIP(GetIP(),"DEL"."$cid");
 		}
         return $this->db->query("DELETE FROM `ria_content` WHERE  `cid`={$cid}");
     }
@@ -123,7 +123,7 @@ class Database
     {
 		if (defined('IP')){
 			include 'Secure.php';
-			$this->InsertIP(GetIP(),"UPDATE");
+			$this->InsertIP(GetIP(),"UPDATE"."$cid");
 		}
 		
 		$title = mysqli_real_escape_string($this->db,$title);
